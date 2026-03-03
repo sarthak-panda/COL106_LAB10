@@ -20,9 +20,6 @@ struct TwoFourTree {
     Node* root;
     TwoFourTree() { root = new Node(); }
 
-    // ----------------------------------------------------------------
-    // PROVIDED: insert (same as Problem 7 solution)
-    // ----------------------------------------------------------------
     void splitAndFix(Node* v) {
         if (v->size() <= 3) return;
         int promoted  = v->keys[2];
