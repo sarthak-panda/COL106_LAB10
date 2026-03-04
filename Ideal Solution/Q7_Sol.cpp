@@ -75,7 +75,22 @@ struct TwoFourTree {
     //       sure you understand it.
     // ----------------------------------------------------------------
     void insert(int key) {
-        // YOUR CODE HERE
+        // Step 1: walk to the correct leaf
+        Node* v = root;
+        while (!v->isLeaf) {
+            int m = v->size();
+            int i = 0;
+            while (i < m && key > v->keys[i]) i++;
+            v = v->children[i];
+        }
+
+        // Step 2: insert key in sorted position within the leaf
+        int i = 0;
+        while (i < v->size() && key > v->keys[i]) i++;
+        v->keys.insert(v->keys.begin() + i, key);
+
+        // Step 3: fix overflow bottom-up
+        splitAndFix(v);
     }
 
     // ----------------------------------------------------------------
